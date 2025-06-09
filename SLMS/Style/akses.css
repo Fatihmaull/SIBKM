@@ -1,0 +1,306 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset CSS */
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+    text-decoration : none;
+}
+
+body {
+    width : 100vw;
+    height : 100vh;
+    font-family: "Roboto", sans-serif;
+    color :rgb(3, 2, 2);
+    overflow : hidden;
+}
+
+/* Style Navigasi (Logo) */
+nav {
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+    width : 100%;
+    height : 13vh;
+    border-bottom : 1px solid rgba(101, 101, 101, .4);
+    padding : 0 6%;
+}
+
+nav .logo {
+    font-family: "Raleway", sans-serif;
+    line-height : 1.8em;
+    font-size : .7rem;
+    color :rgb(107, 106, 106);
+    font-weight : 400;
+}
+
+nav .logo img {
+    width :10%;
+    height : auto;
+}
+
+nav .logo p:nth-of-type(1) {
+    font-family: "Raleway", sans-serif;
+    font-size : 3rem;
+    letter-spacing : 0.7rem;
+    font-weight :bold;
+    font-style : italic;
+    padding : 9px 0;
+    background: linear-gradient(90deg, #00b4db, #9b00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+select {
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    padding-right : .3rem;
+}
+
+/* Login dan Register*/
+.login,
+.register{
+    width: 60%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 3px solid hsl(202, 51.60%, 48.60%) ;
+    margin : 3rem auto;
+    border-radius : 6px;
+    box-shadow: 0 0 8px #3c8dbc;
+    overflow : hidden;
+}
+
+.login .login-form,
+.register .register-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align : center;
+    padding-top: 11%;
+    font-size : .8rem;   
+}
+
+.login-form h2 {
+    font-size: 2.5rem;
+}
+
+.form-input {
+    position: relative;
+    width: 70%;
+    height: 40px;
+    justify-self: center;
+    margin: 25px 0 35px;
+    border-bottom: 2.2px solid rgb(19, 18, 18);
+}
+
+.form-input input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
+
+.form-input label {
+    position : absolute;
+    left : 0;
+    bottom : 8px;
+    color:rgb(96, 95, 95);
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+/* Saat Input Aktif */
+.form-input.active {
+    color:hsl(202, 51.60%, 48.60%);
+    border-bottom: 2.2px solid #3c8dbc;
+}
+
+.form-input.active label{
+    top: -8px;
+    font-size: 0.9rem;
+    font-weight : 600;
+    color:hsl(202, 51.60%, 48.60%);
+}
+
+.material-symbols-outlined{
+    position: absolute;
+    bottom: 7px;
+    right: 0;
+    cursor : pointer;
+}
+
+/* Button Login */
+button {
+    width: 70%;
+    height: 35px;
+    background-color: #3c8dbc;
+    border-radius: 50px;
+    border: none;
+    line-height: 35px;
+    margin : -10px 0 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
+    transition: 
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: rgba(4, 76, 118, 0.8);
+    transform: scale(1.05); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Teks Welcome Back */
+.login .login-text {
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
+    width: 124%;
+    background-color: rgb(60, 141, 188);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 75% 100%);
+    position: relative;
+    left: -20%;
+    right: 0;
+    padding-top: 32%;
+}
+
+.login-text h2 {
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2em;
+    font-size: 3em;
+    text-shadow: 
+    0 0 1px #fff, 
+    0 0 1px #fff, 
+    0 0 1px #7a46ce, 
+    0 0 1px #7a46ce;
+    margin-right: 2.83rem;
+    color: #ffffff;
+}
+
+/* Register */
+.register .register-form {
+    padding-top : 7%;
+}
+
+.register .form-input {
+    height : 37px;
+    margin: 25px 0 30px;
+}
+
+.register-form h2 {
+    font-size : 2.1rem;
+}
+
+.register .register-text {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    background-color: #3c8dbc;
+    clip-path: polygon(0 0, 100% 0%, 27% 100%, 0% 100%);
+    padding: 33% 0 0 4%;
+    color :hsl(0, 0.00%, 100.00%);
+}
+
+.register-text h2 {
+    text-transform: uppercase;
+    line-height: 1.5em;
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-shadow: 
+    0 0 1px #fff, 
+    0 0 1px #fff, 
+    0 0 1px #7a46ce, 
+    0 0 1px #7a46ce;
+}
+
+a {
+    color: rgb(104, 65, 166);
+    font-weight : bold;
+}
+
+/* Media Query */
+/* Mobile (≤ 600px) */
+/* Tablet Potrait (601px – 768px) */
+/* Tablet Landscape (769px – 992px) */
+@media  (max-width: 600px), 
+        (min-width: 600px) and (max-width: 768px),
+        (min-width: 769px) and (max-width: 992px) {
+    /* Navigasi Logo */
+    nav {
+        padding : 0 1.2em;
+    }
+
+    nav .logo {
+        margin-left : 0;
+        font-size : .6rem;
+        font-weight : 600;
+        line-height : 1.2em;
+    }
+
+    nav .logo p:nth-of-type(1) {
+        font-size : 1.7rem;
+    }
+
+    select {
+        font-size : .8rem;
+    }
+
+    /* Login */
+    .login,
+    .register{
+        grid-template-columns: 1fr;
+    }
+
+
+    .login .login-form{
+        padding-top: 9%;
+    }
+
+    .register .register-form {
+        padding-top : 6%;
+    }
+
+    .login-text,
+    .register .register-text {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .login .login-form{
+        padding-top : 16%;
+    }
+
+    .register .register-form {
+        padding-top : 10%;
+    }
+
+    .login-text h2 {
+        font-size: 2.5em;
+        position: relative;
+        top: 10%;
+        left: 6%;
+        line-height: 50px;
+    }
+
+    .register-text h2 {
+        font-size: 2em;
+        position: relative;
+        top: 12%;
+        right: 3%;
+    }
+}
+
