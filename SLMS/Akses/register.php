@@ -58,7 +58,7 @@
                     <span class="material-symbols-outlined togglePassword">lock</span>
                 </div>
 
-                <button class="register-btn">Sign Up</button>
+                <button class="register-btn" type="button">Sign Up</button>
                 <p>Already have an account? <a href="login.php">Login</a></p>
             </form>
         </div>

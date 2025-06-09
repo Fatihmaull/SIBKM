@@ -35,7 +35,7 @@
     <section class = "login">
         <div class = "login-form">
             <h2>Login</h2>
-            <form name="login" target="_self" method="post" autocomplete="off">
+            <form name="login" target="_self" method="post" autocomplete="off" action="../Mahasiswa/profil.php">
                 <!-- Input Login -->
                 <div class = "form-input username">
                     <input type="text" id="username" required>
@@ -49,7 +49,7 @@
                     <span class="material-symbols-outlined togglePassword">lock</span>
                 </div>
 
-                <button class="login-btn">Login</button>
+                <button class="login-btn" type="submit">Login</button>
                 <p>Don't have account ? <a href="register.php">Sign Up</a> </p>
             </form>
         </div>
