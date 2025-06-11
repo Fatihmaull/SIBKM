@@ -18,7 +18,7 @@
 
         <!-- Konten Riwayat Start-->
         <section class="pageRiwayat">
-            <p>Riwayat Pengajuan</p>
+            <h3>Riwayat Pengajuan</h3>
             <table>
                 <thead>
                     <tr>

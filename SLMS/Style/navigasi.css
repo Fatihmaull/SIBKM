@@ -74,7 +74,7 @@ body {
     display: none;
 }
 
-/* Navigasi Main */
+/* Sidebar */
 #sidebar {
     display : flex;
     flex-direction : column;

@@ -38,7 +38,7 @@
 
         <div class = "register-form">
             <h2>Sign Up</h2>
-            <form name="register" target="_self" method="post" autocomplete="off">
+            <form name="register" target="_self" method="post" autocomplete="off" action="login.php">
                 <!-- Input register -->
                 <div class = "form-input username">
                     <span class="material-symbols-outlined">person</span>
@@ -58,7 +58,7 @@
                     <span class="material-symbols-outlined togglePassword">lock</span>
                 </div>
 
-                <button class="register-btn" type="button">Sign Up</button>
+                <button class="register-btn" type="submit">Sign Up</button>
                 <p>Already have an account? <a href="login.php">Login</a></p>
             </form>
         </div>

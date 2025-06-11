@@ -15,6 +15,13 @@
     <section class="container">
         <!-- Navigasi Main -->
         <?php include '../Navigasi/navmain.php'; ?>
+
+        <!-- Pengajuan Start -->
+        
+        <!-- Pengajuan End -->
     </section>
+
+    <!-- Scrip Js -->
+    <script src="../Script/akses.js"></script>
 </body>
 </html>

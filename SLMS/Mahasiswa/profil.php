@@ -34,12 +34,12 @@
                 <div class="inputProfile">
                     <div class="form-input nim">
                         <label for="nim">NIM</label> 
-                        <input type="text" name="nim" value="1237050041" readonly required>
+                        <input type="text" name="nim" value="" readonly required placeholder="NIM">
                     </div>
                     
                     <div class="form-input nama">
                         <label for="nama">Nama Lengkap</label> 
-                        <input type="text" name="nama" value="Siapa Aja" readonly required>
+                        <input type="text" name="nama" value="" readonly required placeholder="Nama Lengkap">
                     </div>
                     
                     <div class="form-input jenisKelamin">
@@ -53,37 +53,37 @@
 
                     <div class="form-input tanggalLahir">
                         <label for="tanggal">Tanggal Lahir</label> 
-                        <input type="date" name="tanggal" value="2025-03-24" readonly required>
+                        <input type="date" name="tanggal" value="" readonly required>
                     </div>
 
                     <div class="form-input whatsApp">
                         <label for="whatsApp">No WhatsApp</label>
-                        <input type="text" name="whatsApp" value="089653278" readonly required>
+                        <input type="text" name="whatsApp" value="" readonly required placeholder="WhatsApp">
                     </div>
 
                     <div class="form-input email">
                         <label for="email">Email</label>
-                        <input type="email" name="email" value="coba@gmail.com" readonly required>
+                        <input type="email" name="email" value="" readonly required placeholder="Email">
                     </div>
 
                     <div class="form-input jurusan">
                         <label for="jurusan">Jurusan</label>
-                        <input type="text" name="jurusan" value="Teknik Informatika" readonly required>
+                        <input type="text" name="jurusan" value="" readonly required placeholder="Jurusan">
                     </div>
 
                     <div class="form-input fakultas">
                         <label for="fakultas">Fakultas</label>
-                        <input type="text" name="fakultas" value="Sains dan Teknologi" readonly required>
+                        <input type="text" name="fakultas" value="" readonly required placeholder="Fakultas">
                     </div>
 
                     <div class="form-input angkatan">
                         <label for="angkatan">Angkatan</label>
-                        <input type="text" name="angkatan" value="2023" readonly required>
+                        <input type="text" name="angkatan" value="" readonly required placeholder="Angkatan">
                     </div>
 
                     <div class="form-input rekening">
                         <label for="rekening">Rekening</label>
-                        <input type="text" name="rekening" value="098765" readonly required>
+                        <input type="text" name="rekening" value="" readonly required placeholder="Rekening">
                     </div>
                 </div>
             </div>
@@ -92,22 +92,22 @@
             <div class="formAkademik">
                 <div class="form-input semester">
                     <label for="semester">Semester</label>
-                    <input type="number" name="semester" value="1" readonly required>
+                    <input type="number" name="semester" value="" readonly required placeholder="Semester">
                 </div>
 
                 <div class="form-input ips">
                     <label for="ips">IPS</label>
-                    <input type="text" name="ips" value="4" readonly required>
+                    <input type="text" name="ips" value="" readonly required placeholder="Indeks Prestasi Sementara">
                 </div>
 
                 <div class="form-input ipk">
                     <label for="ipk">IPK</label>
-                    <input type="text" name="ipk" value="4" readonly required>
+                    <input type="text" name="ipk" value="" readonly required placeholder="Indeks Prestasi Kumulatif">
                 </div>
 
                 <div class="form-input dosen">
                     <label for="dosen">Dosen Pembimbing</label>
-                    <input type="text" name="dosen" value="Fulan" readonly required>
+                    <input type="text" name="dosen" value="" readonly required placeholder="Dosen Pembimbing">
                 </div>
             </div>
 
@@ -115,27 +115,27 @@
             <div class="formOrangTua">
                 <div class="form-input Namaayah">
                     <label for="ayah">Nama Ayah</label>
-                    <input type="text" name="ayah" value="1" readonly required>
+                    <input type="text" name="ayah" value="" readonly required placeholder="Nama Ayah">
                 </div>
 
                 <div class="form-input pekerjaanAyah">
                     <label for="pekerjaanAyah">Pekerjaan Ayah</label>
-                    <input type="text" name="pekerjaanAyah" value="4" readonly required>
+                    <input type="text" name="pekerjaanAyah" value="" readonly required placeholder="Pekerjaan">
                 </div>
                 
                 <div class="form-input namaIbu">
                     <label for="ibu">Nama Ibu</label>
-                    <input type="text" name="ibu" value="4" readonly required>
+                    <input type="text" name="ibu" value="" readonly required placeholder="Nama Ibu">
                 </div>
 
                 <div class="form-input pekerjaanIbu">
                     <label for="pekerjaanIbu">Pekerjaan Ibu </label>
-                    <input type="text" name="pekerjaanIbu" value="Fulan" readonly required>
+                    <input type="text" name="pekerjaanIbu" value="" readonly required placeholder="Pekerjaan">
                 </div>
 
                 <div class="form-input pendapatan">
                         <label for="pendapatan">Pendapatan Orang Tua</label>
-                        <input type="text" name="pendapatan" value="Fulan" readonly required>
+                        <input type="text" name="pendapatan" value="" readonly required placeholder="Pendapatan">
                 </div>
             </div>
 

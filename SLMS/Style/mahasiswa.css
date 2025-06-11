@@ -12,7 +12,7 @@ body {
 }
 
 /* Page Profil */
-.pageProfil, .pageRiwayat{
+.pageProfil, .pageRiwayat, .pageBerkas{
     width : 100%;
     padding : 1.5em;
     background-color : #ebeff4;
@@ -112,11 +112,11 @@ body {
 .formAkademik input,
 .formOrangTua input{
     width : 80%;
-    font-size : .9rem;
+    font-size : .85rem;
 }
 
 /* Button */
-form button, #btn-edit {
+.pageProfil button, #btn-edit {
     min-width : 8vw;
     min-height : 6vh;
     border-radius : 7px;
@@ -153,8 +153,24 @@ form button, #btn-edit {
     box-shadow: 0 4px 10px rgba(128, 125, 125, 0.3);
 }
 
-/* Page Riwayat */
-.pageRiwayat p {
+/* Edit Form */
+form.pageProfil.edit input,
+form.pageProfil.edit select {
+    background-color : #ffffff;
+}
+
+form.pageProfil.edit #btn-simpan,
+form.pageProfil.edit #btn-kembali,
+form.pageProfil.edit .icon-camera {
+    display : inline-block;
+}
+
+form.pageProfil.edit #btn-edit {
+    display : none;
+}
+
+/* Judul Tiap Page */
+h3 {
     font-size : 1.7rem;
     color :rgb(114, 110, 110);
     font-weight : 600;
@@ -162,6 +178,7 @@ form button, #btn-edit {
     margin-bottom : .5em;
 }
 
+/* Page Riwayat */
 .pageRiwayat table {
     width : 100%;
     border-collapse : collapse;
@@ -181,9 +198,102 @@ th, td {
     border: 1.4px solid rgba(82, 80, 80, 0.8);
 }
 
+/* Page Berkas Wajib*/
+.pageBerkas .containerInputBerkas {
+    display: grid;
+    grid-template-columns : repeat(4, 1fr);
+    gap : 45px;
+}
+
+/* Upload Berkas */
+.containerInputBerkas .uploadBerkas, .ceklisItem {
+    background-color: #ffffff;
+    box-shadow : 
+    0 4px 7px rgba(0, 0, 0, 0.6),      
+    0 -4px 8px rgba(0, 0, 0, 0.06),     
+    2px 0 8px rgba(0, 0, 0, 0.06), 
+    -2px 0 8px rgba(0, 0, 0, 0.06);
+    border-radius : 8px;
+    border : 2px solid rgba(235, 239, 244, .5);
+    font-size : .8em;
+    text-align : center;
+    padding : 1.2rem 0; 
+}
+
+.uploadBerkas .icon {
+    font-size : 4.1rem;
+    color :rgba(60, 141, 188, .7);
+    margin-bottom : .1em;
+}
+
+.uploadBerkas h4 {
+    color:rgb(85, 80, 80);
+    line-height : 20px;
+    font-size : .87rem;
+}
+
+.uploadBerkas label {
+    width : 80%;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    gap : 10px;
+    margin : 1.3em auto .6rem;
+    padding : .3rem 0;
+    border-radius : 7px;
+    font-weight : bold;
+    background-color: rgb(43, 212, 205);
+    color :hsl(0, 0.00%, 100.00%);
+    cursor : pointer;
+}
+
+/* Ceklis Item */
+.containerInputBerkas .ceklisItem {
+    grid-column : span 2;
+    padding : 0;
+    font-size : .85rem;
+}
+
+.ceklisItem li {
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
+    padding : .2rem .6rem;
+    margin : 7px;
+    background-color :rgba(201, 206, 212, 0.3);
+    border-radius : 7px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Media Query */
 /* HP - Tablet */
+@media (max-width : 600px) {
+    /* Page Riwayat */
+    .pageRiwayat table {
+        font-size : .73em;
+    }
+
+    /* Page Berkas */
+    .pageBerkas .containerInputBerkas {
+        display : flex;
+        flex-direction: column;
+        flex-wrap : wrap;
+    }
+}
+
 @media  (max-width : 992px){
     .formDataDiri {
         flex-direction : column;
@@ -208,6 +318,12 @@ th, td {
         width: 100%;
         margin-top : .3em;
         font-size : .8rem;
+    }
+
+    .pageBerkas .containerInputBerkas {
+        display : flex;
+        flex-direction: column;
+        flex-wrap : wrap;
     }
 }
 
