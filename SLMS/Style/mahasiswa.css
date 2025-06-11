@@ -12,7 +12,7 @@ body {
 }
 
 /* Page Profil */
-.pageProfil, .pageRiwayat, .pageBerkas{
+.pageProfil, .pageRiwayat, .pageBerkas, .pagePengajuan{
     width : 100%;
     padding : 1.5em;
     background-color : #ebeff4;
@@ -97,7 +97,7 @@ body {
     align-items : center;
 }
 
-.form-input input, select {
+.form-input input, .form-input select {
     width : 70%;
     height : 32px;
     padding : 3px 8px;
@@ -116,10 +116,11 @@ body {
 }
 
 /* Button */
-.pageProfil button, #btn-edit {
+.pageProfil button, #btn-edit,
+.btn-submit {
     min-width : 8vw;
     min-height : 6vh;
-    border-radius : 7px;
+    border-radius : 8px;
     padding : .5rem;
     margin-bottom : .9em;
     color : rgb(255, 255, 255);
@@ -203,6 +204,9 @@ th, td {
     display: grid;
     grid-template-columns : repeat(4, 1fr);
     gap : 45px;
+    background-color : rgb(255, 255, 255);
+    padding : 25px;   
+    border-radius : 10px;
 }
 
 /* Upload Berkas */
@@ -254,7 +258,7 @@ th, td {
     font-size : .85rem;
 }
 
-.ceklisItem li {
+li {
     display : flex;
     align-items : center;
     justify-content : space-between;
@@ -264,36 +268,67 @@ th, td {
     border-radius : 7px;
 }
 
+/* Tombol Submit Berkas */
+.btn-submit {
+    min-width : 15vw;
+    min-height : 7vh;
+    font-weight : bold;
+    font-size : 1.1em;
+    border-radius :12px;
+}
 
+/* Style Pengajuan */
+.pagePengajuan {
+    background: #e0e5ec;
+}
 
+.pagePengajuan .containerPengajuan {
+    width : 90%;
+    margin : 0 auto;
+    background: #e0e5ec;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 9px 9px 16px #b8bec4, -9px -9px 16px #ffffff;
+    font-size : .9rem;
+}
 
+.containerPengajuan .ceklis-item {
+    display : grid;
+    grid-template-columns : repeat(2, 1fr);
+    gap : 10px;
+}
 
+.inputPengajuan {
+    padding : 10px 0 5px 10px;
+    line-height : 33px;
+    font-size : 1.03em;
+}
 
+.containerPengajuan .ceklis-item li,
+.inputPengajuan input, .inputPengajuan select {
+    width : 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #e0e5ec;
+    box-shadow: inset 5px 5px 10px #b8bec4,
+                inset -5px -5px 10px #ffffff;
+}
 
+.inputPengajuan select {
+    min-height : 7vh;
+}
 
-
-
-
-
-
-
+.containerPengajuan .btn-submit {
+    width : 50%;
+    margin : 30px 25% 0;
+    background: #4db6e2;
+    box-shadow: 5px 5px 10px #b0c1ca, -5px -5px 10px #ffffff;
+    transition: 0.3s;
+}
 
 /* Media Query */
 /* HP - Tablet */
-@media (max-width : 600px) {
-    /* Page Riwayat */
-    .pageRiwayat table {
-        font-size : .73em;
-    }
-
-    /* Page Berkas */
-    .pageBerkas .containerInputBerkas {
-        display : flex;
-        flex-direction: column;
-        flex-wrap : wrap;
-    }
-}
-
 @media  (max-width : 992px){
     .formDataDiri {
         flex-direction : column;
@@ -320,12 +355,45 @@ th, td {
         font-size : .8rem;
     }
 
+    /* Page Berkas */
     .pageBerkas .containerInputBerkas {
+        grid-template-columns : repeat(2, 1fr);
+    }
+
+    .container.collapsed .pageBerkas .containerInputBerkas {
         display : flex;
         flex-direction: column;
         flex-wrap : wrap;
     }
 }
+
+/* HP */
+@media (max-width : 600px) {
+    /* Page Riwayat */
+    .pageRiwayat table {
+        font-size : .73em;
+    }
+}
+
+/* Tablet Potrait */
+@media (min-width : 700px) and (max-width : 768px) {
+    .container.collapsed .pageBerkas .containerInputBerkas {
+        display : grid;
+        grid-template-columns : repeat(2, 1fr);
+    }
+}
+
+/* Ukuran Lain */
+@media (min-width : 768px) and (max-width : 992px) {
+    .container.collapsed .pageBerkas .containerInputBerkas {
+        display : grid;
+        grid-template-columns : repeat(3, 1fr);
+    }
+
+    .container.collapsed .containerInputBerkas .ceklisItem {
+        grid-column : span 3;
+    }
+} 
 
 /* Laptop Kecil */
 @media (min-width : 992px) and (max-width : 1115px) {

@@ -68,6 +68,33 @@ function editProfil() {
     });
 }
 
+// Daftar semua berkas yang perlu dicek
+// const dokumen = [
+//   { inputId: "ktm", fileTextId: "fileNameKTM", ceklisId: "cekKTM" },
+//   { inputId: "sktm", fileTextId: "fileNameSKTM", ceklisId: "cekSKTM" },
+//   { inputId: "krs", fileTextId: "fileNameKRS", ceklisId: "cekKRS" },
+//   { inputId: "ukt", fileTextId: "fileNameUKT", ceklisId: "cekUKT" },
+//   { inputId: "gaji", fileTextId: "fileNameGaji", ceklisId: "cekGaji" },
+//   { inputId: "rumah", fileTextId: "fileNameRumah", ceklisId: "cekRumah" }
+// ];
+
+// dokumen.forEach(doc => {
+//   const inputEl = document.getElementById(doc.inputId);
+//   const fileTextEl = document.getElementById(doc.fileTextId);
+//   const ceklisEl = document.getElementById(doc.ceklisId);
+
+//   inputEl.addEventListener("change", () => {
+//     if (inputEl.files.length > 0) {
+//       const fileName = inputEl.files[0].name;
+//       fileTextEl.textContent = fileName;
+//       ceklisEl.textContent = "check_box";
+//     } else {
+//       fileTextEl.textContent = "Belum Ada File";
+//       ceklisEl.textContent = "check_box_outline_blank";
+//     }
+//   });
+// });
+
 // Jalankan Fungsi
 document.addEventListener("DOMContentLoaded", () => {
     inputAktif();
