@@ -68,32 +68,36 @@ function editProfil() {
     });
 }
 
-// Daftar semua berkas yang perlu dicek
-// const dokumen = [
-//   { inputId: "ktm", fileTextId: "fileNameKTM", ceklisId: "cekKTM" },
-//   { inputId: "sktm", fileTextId: "fileNameSKTM", ceklisId: "cekSKTM" },
-//   { inputId: "krs", fileTextId: "fileNameKRS", ceklisId: "cekKRS" },
-//   { inputId: "ukt", fileTextId: "fileNameUKT", ceklisId: "cekUKT" },
-//   { inputId: "gaji", fileTextId: "fileNameGaji", ceklisId: "cekGaji" },
-//   { inputId: "rumah", fileTextId: "fileNameRumah", ceklisId: "cekRumah" }
-// ];
+// Fungsi Untuk Upload Berkas dan Ceklis Item
+function uploadBerkas() {
+    const inputBerkas = document.querySelectorAll("input[type='file']");
 
-// dokumen.forEach(doc => {
-//   const inputEl = document.getElementById(doc.inputId);
-//   const fileTextEl = document.getElementById(doc.fileTextId);
-//   const ceklisEl = document.getElementById(doc.ceklisId);
+    if(!inputBerkas) return;
 
-//   inputEl.addEventListener("change", () => {
-//     if (inputEl.files.length > 0) {
-//       const fileName = inputEl.files[0].name;
-//       fileTextEl.textContent = fileName;
-//       ceklisEl.textContent = "check_box";
-//     } else {
-//       fileTextEl.textContent = "Belum Ada File";
-//       ceklisEl.textContent = "check_box_outline_blank";
-//     }
-//   });
-// });
+    inputBerkas.forEach(upload => {
+        upload.addEventListener("change", function(event) {
+            const file = this.files[0];
+            if(file) {
+                const idInput = event.target.id;
+                const  namaFile= `fileName${idInput.toUpperCase()}`;
+                const ceklis = `cek${idInput.toUpperCase()}`;
+                
+                const listUpload = document.getElementById(namaFile);
+                const checkbox = document.getElementById(ceklis);
+                const URLFile = URL.createObjectURL(file);
+
+                listUpload.innerHTML = `<a href = ${URLFile} target = '_blank'>${file.name}</a>`;
+                checkbox.textContent = "check_box";
+
+                const listCeklis = checkbox.closest("li");
+                if(listCeklis) {
+                    listCeklis.classList.add("ubah");
+                }
+            }
+        });
+    });
+}
+
 
 // Jalankan Fungsi
 document.addEventListener("DOMContentLoaded", () => {
@@ -101,4 +105,5 @@ document.addEventListener("DOMContentLoaded", () => {
     intiPassword();
     navigasi();
     editProfil();
+    uploadBerkas();
 });

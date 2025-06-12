@@ -25,8 +25,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">id_card</span>
             <h4>Kartu Tanda Mahasiswa <br>(KTM)</h4>
-            <input type="file" id="ktm" name="ktm" accept=".pdf" hidden>
             <label for="ktm"><span class="material-symbols-outlined upload">upload</span>Upload KTM</label>
+            <input type="file" id="ktm" name="ktm" accept=".pdf" hidden required>
             <p id="fileNameKTM">Belum Ada File</p>
         </div>
 
@@ -34,8 +34,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">description</span>
             <h4>Surat Keterangan <br>Tidak Mampu (SKTM)</h4>
-            <input type="file" id="sktm" name="sktm" accept=".pdf" hidden>
             <label for="sktm"><span class="material-symbols-outlined upload">upload</span>Upload SKTM</label>
+            <input type="file" id="sktm" name="sktm" accept=".pdf" hidden required>
             <p id="fileNameSKTM">Belum Ada File</p>
         </div>
 
@@ -43,8 +43,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">fact_check</span>
             <h4>Kartu Rencana Studi<br>(KRS)</h4>
-            <input type="file" id="krs" name="krs" accept=".pdf" hidden>
             <label for="krs"><span class="material-symbols-outlined upload">upload</span>Upload KRS</label>
+            <input type="file" id="krs" name="krs" accept=".pdf" hidden required>
             <p id="fileNameKRS">Belum Ada File</p>
         </div>
 
@@ -52,8 +52,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">receipt_long</span>
             <h4>Bukti Pembayaran <br>UKT</h4>
-            <input type="file" id="ukt" name="ukt" accept=".pdf" hidden>
             <label for="ukt"><span class="material-symbols-outlined upload">upload</span>Upload Slip UKT</label>
+            <input type="file" id="ukt" name="ukt" accept=".pdf" hidden required>
             <p id="fileNameUKT">Belum Ada File</p>
         </div>
 
@@ -61,8 +61,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">payments</span>
             <h4>Slip Gaji <br>Orang Tua</h4>
-            <input type="file" id="gaji" name="gaji" accept=".pdf" hidden>
             <label for="gaji"><span class="material-symbols-outlined upload">upload</span>Upload Slip Gaji</label>
+            <input type="file" id="gaji" name="gaji" accept=".pdf" hidden required>
             <p id="fileNameGaji">Belum Ada File</p>
         </div>
 
@@ -70,8 +70,8 @@
         <div class="uploadBerkas">
             <span class="material-symbols-outlined icon">house</span>
             <h4>Foto<br>Rumah</h4>
-            <input type="file" id="rumah" name="rumah" accept=".pdf" hidden>
             <label for="rumah"><span class="material-symbols-outlined upload">upload</span>Upload Foto Rumah</label>
+            <input type="file" id="rumah" name="rumah" accept=".pdf" hidden required>
             <p id="fileNameRumah">Belum Ada File</p>
         </div>
 

@@ -41,15 +41,15 @@
             <form name="register" target="_self" method="post" autocomplete="off" action="login.php">
                 <!-- Input register -->
                 <div class = "form-input username">
-                    <span class="material-symbols-outlined">person</span>
                     <input type="text" id="username" required>
-                    <label for="username">Username</label>
+                    <label for="username">NIM</label>
+                    <span class="material-symbols-outlined">assignment_ind</span>
                 </div>
 
-                <div class = "form-input email">
-                    <input type="email" id="email" required>
-                    <label for="email">Email</label>
-                    <span class="material-symbols-outlined">mail</span>
+                <div class = "form-input nama">
+                    <input type="nama" id="nama" required>
+                    <label for="nama">Nama Lengkap</label>
+                    <span class="material-symbols-outlined">person</span>
                 </div>
 
                 <div class = "form-input password">
