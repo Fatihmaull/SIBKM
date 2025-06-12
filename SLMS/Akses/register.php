@@ -47,7 +47,7 @@
                 </div>
 
                 <div class = "form-input nama">
-                    <input type="nama" id="nama" required>
+                    <input type="text" id="nama" required>
                     <label for="nama">Nama Lengkap</label>
                     <span class="material-symbols-outlined">person</span>
                 </div>
