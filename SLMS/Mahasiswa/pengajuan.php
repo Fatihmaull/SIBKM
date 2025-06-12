@@ -17,7 +17,7 @@
         <?php include '../Navigasi/navmain.php'; ?>
 
         <!-- Pengajuan Start -->
-        <form action="" class="pagePengajuan" method="post" autocomplete="off" enctype="multipart/form-data">
+        <form action="riwayat.php" class="pagePengajuan" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="containerPengajuan">
                 <ul class="ceklis-item">
                     <li>KTM<span class="material-symbols-outlined" id="cekKTM">check_box_outline_blank</span></li>

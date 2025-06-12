@@ -380,7 +380,6 @@ li {
     /* Page Berkas */
     .pageBerkas .containerInputBerkas{
         grid-template-columns : repeat(2, 1fr);
-        border : 2px solid red;
     }
 
     .container.collapsed .pageBerkas .containerInputBerkas{
@@ -412,15 +411,10 @@ li {
 
 /* Tablet Potrait */
 @media (min-width : 700px) and (max-width : 768px) {
-    .container.collapsed .pageBerkas .containerInputBerkas,
-    .containerPengajuan .ceklis-item {
+    .container.collapsed .pageBerkas .containerInputBerkas {
         display : grid;
         grid-template-columns : repeat(2, 1fr);
     }
-
-    /* .btn-submit {
-        grid-column : span 2;
-    } */
 }
 
 /* Ukuran Lain */
@@ -428,16 +422,12 @@ li {
     .container.collapsed .pageBerkas .containerInputBerkas {
         display : grid;
         grid-template-columns : repeat(3, 1fr);
-        border : 2p
     }
 
-    .container.collapsed .containerInputBerkas .ceklisItem {
+    .container.collapsed .containerInputBerkas .ceklisItem,
+    .container.collapsed .pageBerkas .btn-submit {
         grid-column : span 3;
     }
-
-    /* .btn-submit {
-        grid-column : span 3;
-    } */
 } 
 
 /* Laptop Kecil */
