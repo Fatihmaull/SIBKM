@@ -10,11 +10,11 @@
 </head>
 <body>
     <!-- Navigasi Bar-->
-    <?php include '../Navigasi/navbar.php'; ?>
+    <?php include 'Navigasi/navbar.php'; ?>
 
     <section class="container">
         <!-- Navigasi Main -->
-        <?php include '../Navigasi/navmain.php'; ?>
+        <?php include 'Navigasi/navmain.php'; ?>
 
         <!-- Pengajuan Start -->
         <form action="riwayat.php" class="pagePengajuan" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -55,6 +55,6 @@
     </section>
 
     <!-- Scrip Js -->
-    <script src="../Script/akses.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

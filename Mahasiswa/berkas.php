@@ -12,10 +12,10 @@
 <body>
 
 <!-- Navigasi Bar -->
-<?php include '../Navigasi/navbar.php'; ?>
+<?php include 'Navigasi/navbar.php'; ?>
 <section class="container">
     <!-- Sidebar -->
-    <?php include '../Navigasi/navmain.php'; ?>
+    <?php include 'Navigasi/navmain.php'; ?>
     
     <!-- Page Berkas Start -->
     <form action="pengajuan.php" class="pageBerkas" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -92,6 +92,6 @@
 <!-- Page Berkas End -->
 
 <!-- Script -->
-<script src="../Script/akses.js"></script>
+<script src="../script.js"></script>
 </body>
 </html>

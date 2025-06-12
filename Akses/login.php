@@ -62,6 +62,6 @@
     </section>
     <!-- Login End -->
 
-    <script src="../Script/akses.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
