@@ -68,36 +68,44 @@ function editProfil() {
     });
 }
 
-// Fungsi Untuk Upload Berkas dan Ceklis Item
+// Fungsi tampilkan ceklis
+function tampilkanCeklis(idInput) {
+    const ceklisId = `cek${idInput.toUpperCase()}`;
+    const listCeklis = document.getElementById(ceklisId);
+    
+    if (listCeklis) {
+        listCeklis.textContent = "check_box";
+        const listItem = listCeklis.closest("li");
+        
+        if (listItem) {
+            listItem.classList.add("ubah");
+        }
+    }
+}
+
+// Fungsi upload berkas
 function uploadBerkas() {
     const inputBerkas = document.querySelectorAll("input[type='file']");
-
-    if(!inputBerkas) return;
-
+    
     inputBerkas.forEach(upload => {
-        upload.addEventListener("change", function(event) {
+        upload.addEventListener("change", function (event) {
             const file = this.files[0];
-            if(file) {
+            if (file) {
                 const idInput = event.target.id;
-                const  namaFile= `fileName${idInput.toUpperCase()}`;
-                const ceklis = `cek${idInput.toUpperCase()}`;
-                
+                const namaFile = `fileName${idInput.toUpperCase()}`;
+
                 const listUpload = document.getElementById(namaFile);
-                const checkbox = document.getElementById(ceklis);
                 const URLFile = URL.createObjectURL(file);
 
-                listUpload.innerHTML = `<a href = ${URLFile} target = '_blank'>${file.name}</a>`;
-                checkbox.textContent = "check_box";
-
-                const listCeklis = checkbox.closest("li");
-                if(listCeklis) {
-                    listCeklis.classList.add("ubah");
-                }
-            }
+                // Tampilkan nama file
+                listUpload.innerHTML = `<a href="${URLFile}" target="_blank" class="linkBerkas">${file.name}</a>`;
+            
+                // Update tampilan ceklis
+                tampilkanCeklis(idInput);
+        }
         });
     });
 }
-
 
 // Jalankan Fungsi
 document.addEventListener("DOMContentLoaded", () => {

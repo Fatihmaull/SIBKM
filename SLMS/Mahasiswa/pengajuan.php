@@ -24,8 +24,8 @@
                     <li>SKTM<span class="material-symbols-outlined" id="cekSKTM">check_box_outline_blank</span></li>
                     <li>KRS<span class="material-symbols-outlined" id="cekKRS">check_box_outline_blank</span></li>
                     <li>UKT<span class="material-symbols-outlined" id="cekUKT">check_box_outline_blank</span></li>
-                    <li>Slip Gaji<span class="material-symbols-outlined" id="cekGaji">check_box_outline_blank</span></li>
-                    <li>Foto Rumah<span class="material-symbols-outlined" id="cekRumah">check_box_outline_blank</span></li>
+                    <li>Slip Gaji<span class="material-symbols-outlined" id="cekGAJI">check_box_outline_blank</span></li>
+                    <li>Foto Rumah<span class="material-symbols-outlined" id="cekRUMAH">check_box_outline_blank</span></li>
             </ul>
 
             <div class="inputPengajuan">

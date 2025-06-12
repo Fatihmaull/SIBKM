@@ -242,6 +242,14 @@ th, td {
 .uploadBerkas p {
     font-Style : italic;
     color : #fb0000;
+    cursor : pointer;
+}
+
+/* Style Link File */
+.uploadBerkas .linkBerkas {
+    color : #38e238;
+    font-size : 0.8rem;
+    text-decoration: none;
 }
 
 /* Ceklis Item */
@@ -249,12 +257,6 @@ th, td {
     grid-column : span 2;
     padding : 0;
     font-size : .85rem;
-}
-
-/* Style Link File */
-.uploadBerkas a {
-    color : #38e238;
-
 }
 
 /* LI di page berkas dan page pengajuan */
@@ -273,14 +275,17 @@ li {
 
 /* List Ceklis Berubah */
 .ceklisItem li.ubah {
-    background-color: #d1f2e2;
+    background-color:rgb(55, 210, 135);
+    box-shadow: none;
+    color : #ffffff;
+    font-weight : bold;
 }
 
 /* Tombol Submit Berkas dan pengajuan */
 .btn-submit {
     display : block;
     min-width : 35vw;
-    min-height : 7vh;
+    min-height : 8vh;
     margin : 0 auto;
     box-shadow: 5px 5px 10px #b0c1ca, -5px -5px 10px #ffffff;
     transition: 0.3s;
@@ -291,6 +296,20 @@ li {
     font-size : 1.1em;
 }
 
+.pageBerkas .btn-submit {
+    min-width : 18vw;
+    grid-column : span 4;
+    margin : -10px 0 0;
+    justify-self : end;
+}
+
+.containerPengajuan .btn-submit {
+    margin : 30px auto 0;
+}
+
+.btn-submit:hover {
+    background: #3ca7d1;
+}
 
 /* Style Pengajuan */
 .pagePengajuan .containerPengajuan {
@@ -330,14 +349,6 @@ li {
     min-height : 7vh;
 }
 
-.containerPengajuan .btn-submit {
-    margin : 30px auto 0;
-}
-
-.btn-submit:hover {
-    background: #3ca7d1;
-}
-
 /* Media Query */
 /* HP - Tablet */
 @media  (max-width : 992px){
@@ -367,9 +378,9 @@ li {
     }
 
     /* Page Berkas */
-    .pageBerkas .containerInputBerkas,
-    .containerPengajuan .ceklis-item {
+    .pageBerkas .containerInputBerkas{
         grid-template-columns : repeat(2, 1fr);
+        border : 2px solid red;
     }
 
     .container.collapsed .pageBerkas .containerInputBerkas{
@@ -378,8 +389,9 @@ li {
         flex-wrap : wrap;
     }
 
-    .btn-submit {
+    .containerInputBerkas .btn-submit {
         grid-column : span 2;
+        min-width : 220px;
     }
 }
 
@@ -406,9 +418,9 @@ li {
         grid-template-columns : repeat(2, 1fr);
     }
 
-    .btn-submit {
+    /* .btn-submit {
         grid-column : span 2;
-    }
+    } */
 }
 
 /* Ukuran Lain */
@@ -416,15 +428,16 @@ li {
     .container.collapsed .pageBerkas .containerInputBerkas {
         display : grid;
         grid-template-columns : repeat(3, 1fr);
+        border : 2p
     }
 
     .container.collapsed .containerInputBerkas .ceklisItem {
         grid-column : span 3;
     }
 
-    .btn-submit {
+    /* .btn-submit {
         grid-column : span 3;
-    }
+    } */
 } 
 
 /* Laptop Kecil */
