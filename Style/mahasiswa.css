@@ -209,7 +209,7 @@ th, td {
     border : 2px solid rgba(235, 239, 244, .5);
     font-size : .8em;
     text-align : center;
-    padding : 1.2rem 0; 
+    padding : .8rem 0;
 }
 
 .uploadBerkas .icon {
@@ -224,7 +224,7 @@ th, td {
     font-size : .87rem;
 }
 
-.uploadBerkas label {
+.uploadBerkas label, .uploadBerkas .btn-hapus {
     width : 80%;
     display : flex;
     align-items : center;
@@ -237,12 +237,18 @@ th, td {
     background-color: rgb(43, 212, 205);
     color :hsl(0, 0.00%, 100.00%);
     cursor : pointer;
+    border : none;
 }
 
 .uploadBerkas p {
     font-Style : italic;
     color : #fb0000;
     cursor : pointer;
+}
+
+/* Tombol hapus berkas */
+.uploadBerkas .btn-hapus {
+    margin : 10px auto;
 }
 
 /* Style Link File */

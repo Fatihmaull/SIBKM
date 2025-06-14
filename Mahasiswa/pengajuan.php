@@ -45,7 +45,7 @@
 
             <div class="inputPengajuan">
                 <label for="rekening">No Rekening</label><br>
-                <input type="text" id="rekening" placeholder="Masukan No Rekening" required>
+                <input type="text" id="rekening" required readonly>
             </div>
 
             <button class="btn-submit">Submit Pengajuan</button>

@@ -28,18 +28,18 @@
                 <div class="form-input foto">
                     <img id="foto" src="../Gambar/foto.jpg" alt="Foto Diri">
                     <label class="icon-camera" for="file-input"><span class="material-symbols-outlined">add_a_photo</span></label>
-                    <input type="file" name="foto" id="file-input" accept="image/*" onchange="previewFoto(this)" style="display: none;">
+                    <input type="file" name="foto" id="file-input" accept="image/*" onchange="lihatFoto(this)" style="display: none;">
                 </div>
                 
                 <div class="inputProfile">
                     <div class="form-input nim">
                         <label for="nim">NIM</label> 
-                        <input type="text" name="nim" value="" readonly required placeholder="NIM">
+                        <input type="text" name="nim" value="" readonly required>
                     </div>
                     
                     <div class="form-input nama">
                         <label for="nama">Nama Lengkap</label> 
-                        <input type="text" name="nama" value="" readonly required placeholder="Nama Lengkap">
+                        <input type="text" name="nama" value="" readonly required>
                     </div>
                     
                     <div class="form-input jenisKelamin">

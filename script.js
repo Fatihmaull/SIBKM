@@ -45,6 +45,18 @@ function navigasi() {
     });
 }
 
+// Fungsi Melihat Foto
+function lihatFoto(input) {
+    const foto = document.getElementById("foto");
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            foto.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 // Edit Profile
 function editProfil() {
     const form = document.querySelector("form.pageProfil");
@@ -56,7 +68,14 @@ function editProfil() {
     if (!form || !btnEdit || !btnKembali) return;
 
     btnEdit.addEventListener("click", () => {
-        inputs.forEach(item => item.readOnly = false);
+        inputs.forEach(item => {
+            if (item.name !== "nim" && item.name !== "nama") {
+                item.readOnly = false;
+            }if(item.name === "nim" && item.name === "nama") {
+                item.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+        });
+
         if (select) select.disabled = false;
         form.classList.add("edit");
     });
@@ -68,44 +87,57 @@ function editProfil() {
     });
 }
 
-// Fungsi tampilkan ceklis
-function tampilkanCeklis(idInput) {
+// Fungsi ubah ceklis (isi atau kosong)
+function ubahCeklis(idInput, status) {
     const ceklisId = `cek${idInput.toUpperCase()}`;
     const listCeklis = document.getElementById(ceklisId);
-    
-    if (listCeklis) {
+    const listItem = listCeklis?.closest("li");
+
+    if (!listCeklis || !listItem) return;
+
+    if (status === "isi") {
         listCeklis.textContent = "check_box";
-        const listItem = listCeklis.closest("li");
-        
-        if (listItem) {
-            listItem.classList.add("ubah");
-        }
+        listItem.classList.add("ubah");
+    } else {
+        listCeklis.textContent = "check_box_outline_blank";
+        listItem.classList.remove("ubah");
     }
 }
 
-// Fungsi upload berkas
+// Fungsi untuk menangani upload dan tampilkan ceklis
 function uploadBerkas() {
     const inputBerkas = document.querySelectorAll("input[type='file']");
-    
+
     inputBerkas.forEach(upload => {
         upload.addEventListener("change", function (event) {
             const file = this.files[0];
             if (file) {
                 const idInput = event.target.id;
                 const namaFile = `fileName${idInput.toUpperCase()}`;
-
                 const listUpload = document.getElementById(namaFile);
                 const URLFile = URL.createObjectURL(file);
 
-                // Tampilkan nama file
-                listUpload.innerHTML = `<a href="${URLFile}" target="_blank" class="linkBerkas">${file.name}</a>`;
-            
-                // Update tampilan ceklis
-                tampilkanCeklis(idInput);
-        }
+                // Tampilkan nama file dan tombol hapus
+                listUpload.innerHTML = `
+                    <a href="${URLFile}" target="_blank" class="linkBerkas">${file.name}</a><br>
+                    <button type="button" class="btn-hapus" data-id="${idInput}"><span class="material-symbols-outlined">delete</span>Hapus Berkas</button>
+                `;
+
+                // Ceklis
+                ubahCeklis(idInput, "isi");
+
+                // Event tombol hapus
+                const tombolHapus = listUpload.querySelector(".btn-hapus");
+                tombolHapus.addEventListener("click", function () {
+                    upload.value = ""; // reset input file
+                    listUpload.textContent = "Belum Ada File";
+                    ubahCeklis(idInput, "kosong");
+                });
+            }
         });
     });
 }
+
 
 // Jalankan Fungsi
 document.addEventListener("DOMContentLoaded", () => {
