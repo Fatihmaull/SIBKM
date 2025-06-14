@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLMS Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">SLMS</div>
+            <nav class="nav">
+                <a href="stat.html" class="nav-item">📊 Statistic</a>
+                <a href="#" class="nav-item">📋 Verification</a>
+                <a href="histo.html" class="nav-item">🔄 All History</a>
+            </nav>
+            <a href="#" class="logout-btn">🚪 Logout</a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar/Header -->
+            <header class="header">
+                <div class="menu-toggle">☰</div>
+                <div class="admin-info">
+                    <span>Admin Fakultas</span>
+                    <div class="admin-circle">ADMIN</div>
+                </div>
+            </header>
+            <section class="verifikasi-section">
+                <h2>Daftar Pengajuan</h2>
+                <div class="verifikasi-table-wrapper">
+                    <table class="verifikasi-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Nominal</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Rizki Pratama</td>
+                                <td>Rp 5.000.000</td>
+                                <td>
+                                    <select class="status-dropdown">
+                                        <option>Disetujui</option>
+                                        <option>Ditolak</option>
+                                        <option selected>Menunggu</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Siti Nurhaliza</td>
+                                <td>Rp 2.500.000</td>
+                                <td>
+                                    <select class="status-dropdown">
+                                        <option>Disetujui</option>
+                                        <option>Ditolak</option>
+                                        <option selected>Menunggu</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>
