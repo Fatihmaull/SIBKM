@@ -1,3 +1,74 @@
+<?php
+session_start();
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "db_sibkm";
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// redirect kalau belum login
+if (!isset($_SESSION['id_mahasiswa'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$id = $_SESSION['id_mahasiswa'];
+
+// ambil data lama dari database
+$data_berkas = [];
+$result = $conn->query("SELECT * FROM pengajuan_berkas WHERE id_mahasiswa = $id ORDER BY tanggal_upload DESC LIMIT 1");
+if ($result && $result->num_rows > 0) {
+    $data_berkas = $result->fetch_assoc();
+}
+
+// handle submit
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $folder = "../uploads/";
+    $berkas = ['ktm', 'sktm', 'krs', 'ukt', 'gaji', 'rumah'];
+    $path = [];
+
+    foreach ($berkas as $b) {
+        if (isset($_FILES[$b]) && $_FILES[$b]['error'] == 0) {
+            // hapus file lama klo ada
+            if (!empty($data_berkas[$b]) && file_exists($folder . $data_berkas[$b])) {
+                unlink($folder . $data_berkas[$b]);
+            }
+
+            $nama = $_FILES[$b]['name'];
+            $tmp = $_FILES[$b]['tmp_name'];
+            $ekst = pathinfo($nama, PATHINFO_EXTENSION);
+            $nama_baru = $b . "" . $id . "" . time() . "." . $ekst;
+            move_uploaded_file($tmp, $folder . $nama_baru);
+            $path[$b] = $nama_baru;
+        } else {
+            $path[$b] = $data_berkas[$b] ?? ''; // pakai file lama klo g upload baru
+        }
+    }
+
+    // Simpen (update klo udh ada, insert klo belum)
+    if (!empty($data_berkas)) {
+        $stmt = $conn->prepare("UPDATE pengajuan_berkas SET ktm=?, sktm=?, krs=?, ukt=?, slip_gaji=?, foto_rumah=? WHERE id_mahasiswa=?");
+        $stmt->bind_param("ssssssi", $path['ktm'], $path['sktm'], $path['krs'], $path['ukt'], $path['gaji'], $path['rumah'], $id);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO pengajuan_berkas (id_mahasiswa, ktm, sktm, krs, ukt, slip_gaji, foto_rumah) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issssss", $id, $path['ktm'], $path['sktm'], $path['krs'], $path['ukt'], $path['gaji'], $path['rumah']);
+    }
+
+    $stmt->execute();
+    $sukses = true;
+
+    // refresh data terbaru
+    $result = $conn->query("SELECT * FROM pengajuan_berkas WHERE id_mahasiswa = $id ORDER BY tanggal_upload DESC LIMIT 1");
+    if ($result && $result->num_rows > 0) {
+        $data_berkas = $result->fetch_assoc();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,7 +89,18 @@
     <?php include 'Navigasi/navmain.php'; ?>
     
     <!-- Page Berkas Start -->
-    <form action="pengajuan.php" class="pageBerkas" method="post" autocomplete="off" enctype="multipart/form-data">
+    <form action="berkas.php" class="pageBerkas" method="post" autocomplete="off" enctype="multipart/form-data">
+
+    <?php if (isset($sukses) && $sukses): ?>
+        <p style="background:#d4edda;color:#155724;padding:10px;border-left:5px solid #28a745;margin-bottom:15px;">
+            ✅ Berkas berhasil dikirim.
+        </p>
+    <?php elseif (isset($error)): ?>
+        <p style="background:#f8d7da;color:#721c24;padding:10px;border-left:5px solid #dc3545;margin-bottom:15px;">
+            ❌ Gagal upload berkas: <?= strtoupper($error); ?>
+        </p>
+    <?php endif; ?>
+
     <h3>Berkas Wajib</h3>
     <div class="containerInputBerkas">
         <!-- Upload KTM -->
@@ -87,7 +169,7 @@
 
         <button type="submit" class="btn-submit">Submit Berkas</button>
     </div>
-</form>
+    </form>
 </section>
 <!-- Page Berkas End -->
 

@@ -18,7 +18,6 @@ if ($conn->connect_error) {
 
 $nim = $_SESSION['nim'];
 
-// Ambil nama lengkap dari tabel users
 $query_user = "SELECT nama_lengkap FROM users WHERE nim = ?";
 $stmt_user = $conn->prepare($query_user);
 $stmt_user->bind_param("s", $nim);
@@ -28,7 +27,7 @@ $data_user = $result_user->fetch_assoc();
 $nama_lengkap = $data_user['nama_lengkap'];
 $stmt_user->close();
 
-// Proses penyimpanan
+// nyimpen k e databse
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jenis = $_POST['jenis'];
     $tanggal = $_POST['tanggal'];
@@ -49,15 +48,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pendapatan = $_POST['pendapatan'];
 
     // Upload Foto
-    $foto = '';
-    if ($_FILES['foto']['name']) {
-        $foto = basename($_FILES["foto"]["name"]);
-        $target_dir = "../Uploads/";
-        $target_file = $target_dir . $foto;
-        move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
+$foto = $data['foto'] ?? ''; // default 
+if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+    // nama file unik
+    $ekstensi = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+    $nama_baru = $nim . "_" . time() . "." . $ekstensi;
+    $target_dir = "../Uploads/";
+    $target_file = $target_dir . $nama_baru;
+
+    // Hapus foto lamakalo ganti
+    if (!empty($foto) && file_exists($target_dir . $foto) && $foto != "foto.jpg") {
+        unlink($target_dir . $foto);
     }
 
-    // Cek apakah data sudah ada
+    // Upload foto baru
+    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+        $foto = $nama_baru; // update nama file baru ke database
+    }
+}
+
+    // Cek data ada
     $cek = $conn->prepare("SELECT nim FROM mahasiswa WHERE nim = ?");
     $cek->bind_param("s", $nim);
     $cek->execute();
@@ -93,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 
-// Ambil data biodata jika ada
+// Ambil data biodata klo ada
 $query_data = "SELECT * FROM mahasiswa WHERE nim = ?";
 $stmt_data = $conn->prepare($query_data);
 $stmt_data->bind_param("s", $nim);

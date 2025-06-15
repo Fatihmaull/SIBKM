@@ -26,7 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
             $_SESSION['role'] = $user['role'];
 
-            header("Location: ../Mahasiswa/profil.php"); // arahkan ke profil
+            // ngambil id_mahasiswa berdasarkan nim
+            $nim_mahasiswa = $user['nim'];
+            $q_mhs = mysqli_query($koneksi, "SELECT id FROM mahasiswa WHERE nim = '$nim_mahasiswa'");
+            if (mysqli_num_rows($q_mhs) === 1) {
+                $data_mhs = mysqli_fetch_assoc($q_mhs);
+                $_SESSION['id_mahasiswa'] = $data_mhs['id']; 
+            } else {
+                $error = "Data mahasiswa tidak ditemukan.";
+            }
+
+            // redirect ke halaman profil
+            header("Location: ../Mahasiswa/profil.php");
             exit;
         } else {
             $error = "Password atau NIM salah.";

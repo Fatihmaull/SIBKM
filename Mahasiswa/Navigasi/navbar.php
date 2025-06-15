@@ -1,3 +1,53 @@
+<?php
+if (session_status () === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['nim'])) {
+    header("Location: ../Akses/login.php");
+    exit;
+}
+
+$nim = $_SESSION['nim'];
+
+// Koneksi ke database
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "db_sibkm";
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Ambil nama_lengkap dari tabel users
+$query_user = "SELECT nama_lengkap FROM users WHERE nim = ?";
+$stmt_user = $conn->prepare($query_user);
+$stmt_user->bind_param("s", $nim);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+$data_user = $result_user->fetch_assoc();
+$nama_lengkap = $data_user['nama_lengkap'] ?? '-';
+$stmt_user->close();
+
+// Ambil foto dari tabel mahasiswa
+$query_foto = "SELECT foto FROM mahasiswa WHERE nim = ?";
+$stmt_foto = $conn->prepare($query_foto);
+$stmt_foto->bind_param("s", $nim);
+$stmt_foto->execute();
+$result_foto = $stmt_foto->get_result();
+$data_foto = $result_foto->fetch_assoc();
+$foto = $data_foto['foto'] ?? '';
+$stmt_foto->close();
+
+// Set path foto
+$foto_path = $foto ? "../Uploads/" . $foto : "../Gambar/foto.jpg";
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +69,9 @@
             <span class="material-symbols-outlined icon">menu</span>
 
             <div class="username">
-                <p>1237050140</p>
-                <p>Fatih Maulana</p>
-                <img src="../Gambar/foto.jpg" alt="Foto Profil" />
+                <p><?= htmlspecialchars($nim) ?></p>
+                <p><?= htmlspecialchars($nama_lengkap) ?></p>
+                <img src="<?= htmlspecialchars($foto_path) ?>" alt="Foto Profil" />
             </div>
         </div>
     </nav>
