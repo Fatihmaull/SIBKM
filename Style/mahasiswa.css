@@ -446,3 +446,7 @@ li {
         margin : auto;
     }
 }
+
+.material-symbols-outlined.checked {
+    color: #28a745;
+}

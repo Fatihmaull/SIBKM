@@ -51,21 +51,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Simpen (update klo udh ada, insert klo belum)
     if (!empty($data_berkas)) {
-        $stmt = $conn->prepare("UPDATE pengajuan_berkas SET ktm=?, sktm=?, krs=?, ukt=?, slip_gaji=?, foto_rumah=? WHERE id_mahasiswa=?");
+        $stmt = $conn->prepare("UPDATE pengajuan_berkas SET ktm=?, sktm=?, krs=?, ukt=?, slip_gaji=?, foto_rumah=?, tanggal_upload=NOW() WHERE id_mahasiswa=?");
         $stmt->bind_param("ssssssi", $path['ktm'], $path['sktm'], $path['krs'], $path['ukt'], $path['gaji'], $path['rumah'], $id);
     } else {
-        $stmt = $conn->prepare("INSERT INTO pengajuan_berkas (id_mahasiswa, ktm, sktm, krs, ukt, slip_gaji, foto_rumah) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO pengajuan_berkas (id_mahasiswa, ktm, sktm, krs, ukt, slip_gaji, foto_rumah, tanggal_upload) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
         $stmt->bind_param("issssss", $id, $path['ktm'], $path['sktm'], $path['krs'], $path['ukt'], $path['gaji'], $path['rumah']);
     }
 
     $stmt->execute();
-    $sukses = true;
 
-    // refresh data terbaru
-    $result = $conn->query("SELECT * FROM pengajuan_berkas WHERE id_mahasiswa = $id ORDER BY tanggal_upload DESC LIMIT 1");
-    if ($result && $result->num_rows > 0) {
-        $data_berkas = $result->fetch_assoc();
-    }
+    // Redirect ke halaman pengajuan
+    header("Location: pengajuan.php");
+    exit;
 }
 ?>
 
@@ -177,3 +174,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="../script.js"></script>
 </body>
 </html>
+

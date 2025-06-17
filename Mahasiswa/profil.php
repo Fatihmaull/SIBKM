@@ -245,6 +245,7 @@ $conn->close();
                     <input type="text" name="pendapatan" value="<?= $data['pendapatan_orangtua'] ?? '' ?>" readonly required>
                 </div>
             </div>
+            
 
             <button type="submit" id="btn-simpan">Simpan</button>
             <button type="button" id="btn-kembali">Kembali</button>
