@@ -1,62 +1,98 @@
 <?php
-// Simulasi data verifikasi
-$verifikasi = [
-  ["nama" => "Rizki Pratama", "rekening" => "1234567890", "status" => "Disetujui"],
-  ["nama" => "Siti Nurhaliza", "rekening" => "9876543210", "status" => "Menunggu"]
-];
+session_start();
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "db_sibkm";
 
-// Ambil hanya yang statusnya Disetujui
-$data = array_filter($verifikasi, function($row) {
-  return $row['status'] === 'Disetujui';
-});
+$koneksi = mysqli_connect($host, $user, $pass, $db);
+if (!$koneksi) {
+    die("Koneksi gagal: " . mysqli_connect_error());
+}
+
+$pesan = '';
+
+// Proses perubahan status transfer jika form dikirim
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verifikasi'])) {
+    $id = $_POST['id_pengajuan'];
+    $status_transfer = $_POST['status_transfer'];
+    $password_input = $_POST['admin_password'];
+
+    // Password admin langsung di-hardcode di sini (bisa kamu hash juga jika ingin)
+    $password_admin = "admin123";
+
+    if ($password_input === $password_admin) {
+        $stmt = mysqli_prepare($koneksi, "UPDATE pengajuan_dana SET status_transfer = ? WHERE id = ?");
+        mysqli_stmt_bind_param($stmt, "si", $status_transfer, $id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $pesan = "✅ Status berhasil diperbarui.";
+        } else {
+            $pesan = "❌ Gagal memperbarui status.";
+        }
+
+        mysqli_stmt_close($stmt);
+    } else {
+        $pesan = "⚠️ Password admin salah!";
+    }
+}
+
+// Ambil data pengajuan yang disetujui
+$data = [];
+$query = "
+    SELECT 
+        pd.id,
+        u.nama_lengkap,
+        m.rekening,
+        pd.status,
+        pd.status_transfer
+    FROM pengajuan_dana pd
+    JOIN mahasiswa m ON pd.id_mahasiswa = m.id
+    JOIN users u ON m.nim = u.nim
+    WHERE pd.status = 'Disetujui'
+";
+
+$result = mysqli_query($koneksi, $query);
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Distribusi Dana</title>
   <link rel="stylesheet" href="../StyleA/admin.css">
   <style>
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+    .verifikasi-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
     }
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      text-align: center;
-      max-width: 300px;
-    }
-    .modal-content input[type="password"] {
-      padding: 8px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .modal-content button {
-      padding: 6px 12px;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 5px;
+    .pesan {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-left: 4px solid #3498db;
     }
   </style>
 </head>
 <body>
+
 <?php include '../NavigasiA/navbarA.php'; ?>
 <div class="container">
   <?php include '../NavigasiA/navmainA.php'; ?>
   <main class="main-content">
     <section class="verifikasi-section">
       <h2>Distribusi Dana</h2>
+
+      <?php if ($pesan): ?>
+        <div class="pesan"><?= htmlspecialchars($pesan) ?></div>
+      <?php endif; ?>
+
       <div class="verifikasi-table-wrapper">
         <table class="verifikasi-table">
           <thead>
@@ -64,7 +100,8 @@ $data = array_filter($verifikasi, function($row) {
               <th>No</th>
               <th>Nama</th>
               <th>No. Rekening</th>
-              <th>Status</th>
+              <th>Status Pengajuan</th>
+              <th>Status Transfer</th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -72,14 +109,20 @@ $data = array_filter($verifikasi, function($row) {
             <?php $no = 1; foreach ($data as $row): ?>
               <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $row['nama'] ?></td>
-                <td><?= $row['rekening'] ?></td>
-                <td><?= $row['status'] ?></td>
+                <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>
+                <td><?= htmlspecialchars($row['rekening']) ?></td>
+                <td><?= htmlspecialchars($row['status']) ?></td>
+                <td><?= htmlspecialchars($row['status_transfer']) ?></td>
                 <td>
-                  <select class="status-dropdown" onchange="handleDropdownChange(this)">
-                    <option>Belum di-transfer</option>
-                    <option>Sudah di-transfer</option>
-                  </select>
+                  <form method="POST" class="verifikasi-form">
+                    <input type="hidden" name="id_pengajuan" value="<?= $row['id'] ?>">
+                    <select name="status_transfer" required>
+                      <option value="Belum di-transfer" <?= $row['status_transfer'] == 'Belum di-transfer' ? 'selected' : '' ?>>Belum di-transfer</option>
+                      <option value="Sudah di-transfer" <?= $row['status_transfer'] == 'Sudah di-transfer' ? 'selected' : '' ?>>Sudah di-transfer</option>
+                    </select>
+                    <input type="password" name="admin_password" placeholder="Password admin" required>
+                    <button type="submit" name="verifikasi">Verifikasi</button>
+                  </form>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -89,39 +132,6 @@ $data = array_filter($verifikasi, function($row) {
     </section>
   </main>
 </div>
-
-<!-- Modal Password Admin -->
-<div class="modal" id="passwordModal">
-  <div class="modal-content">
-    <p>Masukkan password admin:</p>
-    <input type="password" id="adminPass" placeholder="Password">
-    <button onclick="verifyPassword()">Verifikasi</button>
-  </div>
-</div>
-
-<script>
-let selectedDropdown = null;
-
-function handleDropdownChange(element) {
-  selectedDropdown = element;
-  document.getElementById("passwordModal").style.display = "flex";
-}
-
-function verifyPassword() {
-  const input = document.getElementById("adminPass").value;
-  if (input === "admin123") {
-    alert("Password benar. Status diperbarui.");
-    document.getElementById("passwordModal").style.display = "none";
-    document.getElementById("adminPass").value = "";
-    // simpan ke DB di sini
-  } else {
-    alert("Password salah! Status tidak berubah.");
-    document.getElementById("passwordModal").style.display = "none";
-    document.getElementById("adminPass").value = "";
-    if (selectedDropdown) selectedDropdown.value = "Belum di-transfer";
-  }
-}
-</script>
 <script src="../Script/akses.js"></script>
 </body>
 </html>

@@ -37,9 +37,9 @@
 
 
         <div class="navigasi">
-            <span class="material-symbols-outlined">logout</span>
-           <a href="../Akses/login.php" target="_self">Logout</a>
-        </div>
+    <span class="material-symbols-outlined">logout</span>
+    <a href="../../Akses/logout.php" target="_self">Logout</a>
+</div>
 
     </nav>
     <!-- Navigasi Main End -->
