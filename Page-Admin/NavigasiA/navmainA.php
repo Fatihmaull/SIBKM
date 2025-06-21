@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigasi Main</title>
     <!-- Style -->
-    <link rel="stylesheet" href="../Style/navigasi.css">
+    <link rel="stylesheet" href="../../Style/navigasi.css">
 
     <!-- Icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
