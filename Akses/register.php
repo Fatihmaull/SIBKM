@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nim) || empty($nama) || empty($password)) {
         $error = "Semua field wajib diisi!";
     } else {
-        // Cek apakah NIM sudah ada
+        // Cek NIM ada
         $cek = mysqli_query($koneksi, "SELECT * FROM users WHERE nim = '$nim'");
         if (mysqli_num_rows($cek) > 0) {
             $error = "NIM sudah terdaftar!";
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert = mysqli_query($koneksi, "INSERT INTO users (nim, nama_lengkap, password) VALUES ('$nim', '$nama', '$password_hash')");
 
             if ($insert) {
-                // Redirect ke login TANPA bawa error lama
+                // Redirect ke login 
                 header("Location: login.php");
                 exit;
             } else {

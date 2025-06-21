@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 01:07 AM
+-- Generation Time: Jun 17, 2025 at 05:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,7 +55,7 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id`, `nim`, `jenis_kelamin`, `tanggal_lahir`, `whatsapp`, `email`, `jurusan`, `fakultas`, `angkatan`, `rekening`, `semester`, `ips`, `ipk`, `dosen_pembimbing`, `nama_ayah`, `pekerjaan_ayah`, `nama_ibu`, `pekerjaan_ibu`, `pendapatan_orangtua`, `foto`) VALUES
-(1, '123', 'laki-laki', '2018-01-01', '08', 'aas@gmail.com', 'pai', 'tarbiyah', '20', '000', 10, 4.00, 4.00, 'dospem', 'yah', 'ayah', 'bu', 'ibu', '230.000.000.000', '123_1749997866.png');
+(1, '123', 'laki-laki', '2018-01-01', '08', 'aas@gmail.com', 'pai', 'tarbiyah', '20', '000', 5, 4.00, 4.00, 'dospem', 'yah', 'ayah', 'bu', 'ibu', '230.000.000.000', '123_1750167370.png');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,46 @@ CREATE TABLE `pengajuan_berkas` (
 --
 
 INSERT INTO `pengajuan_berkas` (`id`, `id_mahasiswa`, `ktm`, `sktm`, `krs`, `ukt`, `slip_gaji`, `foto_rumah`, `tanggal_upload`) VALUES
-(1, 1, 'ktm11750000853.png', 'sktm11750000853.png', 'krs11750000853.png', 'ukt11750000853.png', 'gaji11750000853.png', 'rumah11750000853.png', '2025-06-15 15:20:53');
+(1, 1, 'ktm11750171672.png', 'sktm11750171672.png', 'krs11750171672.png', 'ukt11750171672.png', 'gaji11750171672.png', 'rumah11750171672.png', '2025-06-17 14:47:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengajuan_dana`
+--
+
+CREATE TABLE `pengajuan_dana` (
+  `id` int(11) NOT NULL,
+  `id_mahasiswa` int(11) NOT NULL,
+  `jenis_pengajuan` varchar(100) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `tanggal_pengajuan` timestamp NOT NULL DEFAULT current_timestamp(),
+  `no_rekening` varchar(30) DEFAULT NULL,
+  `status` enum('Diproses','Disetujui','Ditolak') DEFAULT 'Diproses'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengajuan_dana`
+--
+
+INSERT INTO `pengajuan_dana` (`id`, `id_mahasiswa`, `jenis_pengajuan`, `nominal`, `tanggal_pengajuan`, `no_rekening`, `status`) VALUES
+(1, 1, 'Bekal Jajan', 111, '2025-06-17 14:53:08', '', 'Diproses');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayat_pengajuan`
+--
+
+CREATE TABLE `riwayat_pengajuan` (
+  `id_pengajuan` int(11) NOT NULL,
+  `id_mahasiswa` int(11) DEFAULT NULL,
+  `jenis_pengajuan` varchar(100) DEFAULT NULL,
+  `nominal` int(11) DEFAULT NULL,
+  `no_rekening` varchar(50) DEFAULT NULL,
+  `tanggal_pengajuan` date DEFAULT NULL,
+  `status` enum('Diproses','Disetujui','Ditolak') DEFAULT 'Diproses'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -124,6 +163,19 @@ ALTER TABLE `pengajuan_berkas`
   ADD KEY `id_mahasiswa` (`id_mahasiswa`);
 
 --
+-- Indexes for table `pengajuan_dana`
+--
+ALTER TABLE `pengajuan_dana`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_mahasiswa` (`id_mahasiswa`);
+
+--
+-- Indexes for table `riwayat_pengajuan`
+--
+ALTER TABLE `riwayat_pengajuan`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -147,6 +199,18 @@ ALTER TABLE `pengajuan_berkas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `pengajuan_dana`
+--
+ALTER TABLE `pengajuan_dana`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `riwayat_pengajuan`
+--
+ALTER TABLE `riwayat_pengajuan`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -167,6 +231,12 @@ ALTER TABLE `mahasiswa`
 --
 ALTER TABLE `pengajuan_berkas`
   ADD CONSTRAINT `pengajuan_berkas_ibfk_1` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id`);
+
+--
+-- Constraints for table `pengajuan_dana`
+--
+ALTER TABLE `pengajuan_dana`
+  ADD CONSTRAINT `pengajuan_dana_ibfk_1` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

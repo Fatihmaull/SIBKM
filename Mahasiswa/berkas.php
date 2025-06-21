@@ -88,16 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Page Berkas Start -->
     <form action="berkas.php" class="pageBerkas" method="post" autocomplete="off" enctype="multipart/form-data">
 
-    <?php if (isset($sukses) && $sukses): ?>
-        <p style="background:#d4edda;color:#155724;padding:10px;border-left:5px solid #28a745;margin-bottom:15px;">
-            ✅ Berkas berhasil dikirim.
-        </p>
-    <?php elseif (isset($error)): ?>
-        <p style="background:#f8d7da;color:#721c24;padding:10px;border-left:5px solid #dc3545;margin-bottom:15px;">
-            ❌ Gagal upload berkas: <?= strtoupper($error); ?>
-        </p>
-    <?php endif; ?>
-
     <h3>Berkas Wajib</h3>
     <div class="containerInputBerkas">
         <!-- Upload KTM -->
