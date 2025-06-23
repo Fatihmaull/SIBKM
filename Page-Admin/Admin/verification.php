@@ -1,9 +1,9 @@
 <?php
 session_start();
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db = "db_sibkm";
+$user = "sibkm_user";
+$pass = "Sibkm@123";
+$db = "sibkm_db";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) {
