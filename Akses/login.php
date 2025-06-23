@@ -39,7 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // redirect ke halaman profil
             header("Location: ../Mahasiswa/profil.php");
             exit;
-        } else {
+        } elseif ($user['role'] === 'admin') {
+                // Redirect ke halaman admin
+                header("Location: ../Page-Admin/Admin/statistic.php");
+                exit;
+            }
+        else {
             $error = "Password atau NIM salah.";
         }
     } else {
