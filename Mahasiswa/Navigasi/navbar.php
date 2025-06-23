@@ -12,9 +12,9 @@ $nim = $_SESSION['nim'];
 
 // Koneksi ke database
 $host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "db_sibkm";
+$user = "sibkm_user";
+$pass = "Sibkm@123";
+$db = "sibkm_db";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
